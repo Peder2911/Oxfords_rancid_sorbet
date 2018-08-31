@@ -1,0 +1,10 @@
+venv/*
+testing/*
+go
+*.pyc
+depr
+__pycache__/*
+.secret
+data/*
+!data/.gitkeep
+depr/*
