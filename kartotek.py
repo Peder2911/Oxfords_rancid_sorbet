@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sqlite3 as sq
 import json
@@ -57,6 +57,13 @@ class main():
 
         con.commit()
 
+    def remove(self):
+        con = sq.connect('data/kartotek.db')
+
+        tab = 'note'
+        identifier = int(input('enter identifer:\n'))
+        dbRemove(con,tab,identifier)
+
     def show(self):
         con = sq.connect('data/kartotek.db')
 
@@ -88,6 +95,19 @@ def dbAdd(con,table,entry):
 
     cl.debug(q)
 
+    c.execute(q)
+
+    con.commit()
+
+def dbRemove(con,table,identifier):
+    c = con.cursor()
+    q = 'DELETE FROM {table} WHERE i={identifier}'
+    q = q.format(
+            table = table,
+            identifier = identifier
+            )
+
+    cl.debug(q)
     c.execute(q)
 
     con.commit()
